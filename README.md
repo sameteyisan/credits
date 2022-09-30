@@ -14,7 +14,7 @@ Credits(
 	],
 ),
 ```
-That's it. ☺️ You can only use it by giving an ``items``.
+That's it. ☺️ You can only use it by giving an ``children``.
 ```dart
 Credits(
 	onFinished: () => debugPrint("finish"),
