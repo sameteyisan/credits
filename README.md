@@ -1,10 +1,8 @@
 ### CREDITS
 
-![showcase](https://github.com/sameteyisan/credits/blob/main/example.gif)
+Show a simple end credits that includes any type of widgets as you wish.
 
-![showcase](https://github.com/sameteyisan/credits/blob/main/example2.gif)
-
-Show a simple end credits screen in your Flutter app.
+|![showcase](https://github.com/sameteyisan/credits/blob/main/example.gif)|![showcase](https://github.com/sameteyisan/credits/blob/main/example2.gif)|
 
 ```dart
 Credits(
@@ -14,6 +12,7 @@ Credits(
 	],
 ),
 ```
+
 That's it. ☺️ You can only use it by giving an ``children``.
 ```dart
 Credits(
