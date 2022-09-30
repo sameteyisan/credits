@@ -1,40 +1,48 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+### CREDITS
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+![showcase](https://github.com/sameteyisan/credits/blob/main/example.gif)
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+![showcase](https://github.com/sameteyisan/credits/blob/main/example2.gif)
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+A simple and customizable credits.
 
 ```dart
-const like = 'sample';
+Credits(
+	children: [
+		Text("Actor 1"),
+		Text("Actor 2"),
+	],
+),
+```
+That's it. ☺️ You can only use it by giving an ``items``.
+```dart
+Credits(
+	onFinished: () => debugPrint("finish"),
+	pauseOnTouch: false,
+	duration: const  Duration(seconds: 12),
+	delay: const  Duration(seconds: 1),
+	children: [
+		Text("Actor 1"),
+		Text("Actor 2"),
+		Text("Actor 3"),
+	],
+),
 ```
 
-## Additional information
+Parameters are as follows. ☺️
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
-# credits
+ - **children**: You have to give here the widgets that will be included in the scroll action.
+
+ - **onFinished**: You can use this function for the operations to be performed when the scrolling process is completed.
+ 
+ - **pauseOnTouch**: When the screen is pressed, it stops the credits.
+ 
+ - **duration**: You can set the playing time of the swipe here.
+
+ - **delay**: You can set the delay time of the scroll here.
+
+ - **backgroundColor**: You can edit the background color here.
+
+ - **curve**: Lets you specify the type of animation curve.
+
+ - **crossAxisAlignment**: Lets you specify how children are placed along the cross axis in a flexible layout.

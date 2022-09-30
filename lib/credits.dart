@@ -28,13 +28,13 @@ class Credits extends StatefulWidget {
   /// You can edit the background color here.
   final Color backgroundColor;
 
-  ///
+  /// Lets you specify the type of animation curve.
   final Curve curve;
 
-  ///
+  /// Lets you specify how children are placed along the cross axis in a flexible layout.
   final CrossAxisAlignment crossAxisAlignment;
 
-  ///
+  /// When the screen is pressed, it stops the credits.
   final bool pauseOnTouch;
 
   @override
