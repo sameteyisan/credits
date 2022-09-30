@@ -4,7 +4,7 @@
 
 ![showcase](https://github.com/sameteyisan/credits/blob/main/example2.gif)
 
-A simple and customizable credits.
+Show a simple end credits screen in your Flutter app.
 
 ```dart
 Credits(
