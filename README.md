@@ -3,6 +3,7 @@
 Show a simple end credits that includes any type of widgets as you wish.
 
 |![showcase](https://github.com/sameteyisan/credits/blob/main/example.gif)|![showcase](https://github.com/sameteyisan/credits/blob/main/example2.gif)|
+|--|--|
 
 ```dart
 Credits(
