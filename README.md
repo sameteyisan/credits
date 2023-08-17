@@ -2,10 +2,6 @@
 
 Show a simple end credits that includes any type of widgets as you wish.
 
-
-<img  src="https://github.com/sameteyisan/credits/blob/main/example.gif?raw=true"  width="280">**&nbsp**<img  src="https://github.com/sameteyisan/credits/blob/main/example2.gif?raw=true"  width="280">
-
-
 <img  src="https://github.com/sameteyisan/credits/blob/main/example.gif?raw=true"  width="280">   <img  src="https://github.com/sameteyisan/credits/blob/main/example2.gif?raw=true"  width="280">
 
 ```dart
