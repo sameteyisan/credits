@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Credits extends StatefulWidget {
   const Credits({
-    Key? key,
+    super.key,
     required this.children,
     this.onFinished,
     this.duration = const Duration(seconds: 10),
@@ -11,7 +11,7 @@ class Credits extends StatefulWidget {
     this.curve = Curves.linear,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.pauseOnTouch = true,
-  }) : super(key: key);
+  });
 
   /// You have to give here the widgets that will be included in the scroll action.
   final List<Widget> children;

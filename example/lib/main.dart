@@ -12,9 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Credits Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: const MyHomePage(),
     );
   }
@@ -39,19 +37,23 @@ class _MyHomePageState extends State<MyHomePage> {
           _creditText("Actor 3", 24),
           _creditText("Actor 4", 26),
         ],
+        onFinished: () {
+          // Do something when the credits finish
+          debugPrint("Credits finished");
+        },
       ),
     );
   }
 
   Widget _creditText(String text, double size) => Padding(
-        padding: const EdgeInsets.only(bottom: 32),
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: size,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
-          ),
-        ),
-      );
+    padding: const EdgeInsets.only(bottom: 32),
+    child: Text(
+      text,
+      style: TextStyle(
+        fontSize: size,
+        fontWeight: FontWeight.w500,
+        color: Colors.white,
+      ),
+    ),
+  );
 }
