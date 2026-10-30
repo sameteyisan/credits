@@ -1,6 +1,6 @@
 name: credits
 description: Cinematic, auto-scrolling end credits for Flutter. Use any widgets, customize timing and styling, and pause on touch.
-version: 1.0.3
+version: 1.0.4
 homepage: https://github.com/sameteyisan/credits
 repository: https://github.com/sameteyisan/credits
 issue_tracker: https://github.com/sameteyisan/credits/issues

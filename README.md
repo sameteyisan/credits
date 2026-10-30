@@ -8,7 +8,7 @@ images, or any other widgets; `Credits` takes care of the scroll.
 [![pub package](https://img.shields.io/pub/v/credits.svg)](https://pub.dev/packages/credits)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-![Credits demo](demo.gif)
+<img src="https://github.com/sameteyisan/credits/blob/main/demo.gif?raw=true" alt="Credits animation demo" width="280">
 
 ## Install
 

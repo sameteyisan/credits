@@ -3,7 +3,7 @@ description: An interactive, cinematic showcase for the credits widget.
 
 publish_to: 'none'
 
-version: 1.0.3+2
+version: 1.0.4+3
 
 environment:
   sdk: ^3.11.0

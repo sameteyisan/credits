@@ -1,3 +1,7 @@
+## 1.0.4
+
+* Updated the README demo to use an absolute GitHub image URL with a fixed display width.
+
 ## 1.0.3
 
 * Redesigned example with live controls and two themes.
