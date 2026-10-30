@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class Credits extends StatefulWidget {
@@ -41,24 +43,29 @@ class Credits extends StatefulWidget {
   State<Credits> createState() => _CreditsState();
 }
 
-class _CreditsState extends State<Credits> with SingleTickerProviderStateMixin {
+class _CreditsState extends State<Credits> {
   final scrollController = ScrollController();
+  Timer? _startTimer;
+  bool _started = false;
+  bool _paused = false;
+  bool _finished = false;
 
   @override
   void initState() {
-    Future.delayed(widget.delay).then(
-      (value) => scrollController.animateTo(
-        scrollController.position.maxScrollExtent,
-        duration: widget.duration,
-        curve: widget.curve,
-      ),
-    );
-    scrollController.addListener(_onScrollChanged);
     super.initState();
+    scrollController.addListener(_onScrollChanged);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _startTimer = Timer(widget.delay, () {
+        _started = true;
+        if (!_paused) _animateToEnd();
+      });
+    });
   }
 
   @override
   void dispose() {
+    _startTimer?.cancel();
     scrollController
       ..removeListener(_onScrollChanged)
       ..dispose();
@@ -74,56 +81,72 @@ class _CreditsState extends State<Credits> with SingleTickerProviderStateMixin {
       child: Container(
         color: widget.backgroundColor,
         constraints: const BoxConstraints.expand(),
-        child: SingleChildScrollView(
-          physics: const NeverScrollableScrollPhysics(),
-          controller: scrollController,
-          child: Container(
-            padding: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height,
-              bottom: MediaQuery.of(context).size.height,
-            ),
-            child: Column(
-              crossAxisAlignment: widget.crossAxisAlignment,
-              children: widget.children,
-            ),
-          ),
+        child: LayoutBuilder(
+          builder:
+              (context, constraints) => SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: scrollController,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: constraints.maxHeight,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: widget.crossAxisAlignment,
+                    children: widget.children,
+                  ),
+                ),
+              ),
         ),
       ),
     );
   }
 
   void _pause() {
-    if (!widget.pauseOnTouch) return;
+    if (!widget.pauseOnTouch || _finished) return;
 
-    final offset = scrollController.offset;
-    scrollController.animateTo(
-      offset,
-      duration: Duration.zero,
-      curve: widget.curve,
-    );
+    _paused = true;
+    if (scrollController.hasClients) {
+      scrollController.jumpTo(scrollController.offset);
+    }
   }
 
   void _continue() {
-    if (!widget.pauseOnTouch) return;
+    if (!_paused) return;
+    _paused = false;
+    if (_started) _animateToEnd();
+  }
+
+  void _animateToEnd() {
+    if (!mounted || !scrollController.hasClients || _finished) return;
     final maxScrollExtent = scrollController.position.maxScrollExtent;
-    final duration = widget.duration;
-    final pixelDuration = duration.inMilliseconds / maxScrollExtent;
     final remaining = maxScrollExtent - scrollController.offset;
-    final remainingMS = (remaining * pixelDuration).toInt();
+    if (maxScrollExtent <= 0 || remaining <= 0) {
+      _onScrollChanged();
+      return;
+    }
+    final remainingDuration = Duration(
+      microseconds:
+          (widget.duration.inMicroseconds * remaining / maxScrollExtent)
+              .round(),
+    );
+    if (remainingDuration <= Duration.zero) {
+      scrollController.jumpTo(maxScrollExtent);
+      return;
+    }
 
     scrollController.animateTo(
-      scrollController.position.maxScrollExtent,
-      duration: Duration(milliseconds: remainingMS),
+      maxScrollExtent,
+      duration: remainingDuration,
       curve: widget.curve,
     );
   }
 
   void _onScrollChanged() {
-    if (scrollController.offset >= scrollController.position.maxScrollExtent &&
+    if (!_finished &&
+        scrollController.offset >= scrollController.position.maxScrollExtent &&
         !scrollController.position.outOfRange) {
-      if (widget.onFinished != null) {
-        widget.onFinished!();
-      }
+      _finished = true;
+      widget.onFinished?.call();
     }
   }
 }

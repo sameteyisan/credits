@@ -1,11 +1,20 @@
 name: credits
-description: Show a simple end credits that includes any type of widgets as you wish.
-version: 1.0.2
-homepage: https://github.com/sameteyisan/credits.git
+description: Cinematic, auto-scrolling end credits for Flutter. Use any widgets, customize timing and styling, and pause on touch.
+version: 1.0.3
+homepage: https://github.com/sameteyisan/credits
+repository: https://github.com/sameteyisan/credits
+issue_tracker: https://github.com/sameteyisan/credits/issues
+topics:
+  - credits
+  - animation
+  - widgets
+screenshots:
+  - description: Interactive credits example with cinematic styling and live controls.
+    path: screenshots/credits-demo.png
 
 environment:
   sdk: ^3.7.2
-  flutter: ">=1.17.0"
+  flutter: ">=3.29.2"
 
 dependencies:
   flutter:

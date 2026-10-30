@@ -1,47 +1,76 @@
-### CREDITS
+# credits
 
-Show a simple end credits that includes any type of widgets as you wish.
+A little appreciation. A beautiful ending.
 
-<img  src="https://github.com/sameteyisan/credits/blob/main/example.gif?raw=true"  width="280">   <img  src="https://github.com/sameteyisan/credits/blob/main/example2.gif?raw=true"  width="280">
+Cinematic, auto-scrolling end credits for Flutter. Bring your own text, logos,
+images, or any other widgets; `Credits` takes care of the scroll.
 
-```dart
-Credits(
-	children: [
-		Text("Actor 1"),
-		Text("Actor 2"),
-	],
-),
+[![pub package](https://img.shields.io/pub/v/credits.svg)](https://pub.dev/packages/credits)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+![Credits demo](demo.gif)
+
+## Install
+
+```sh
+flutter pub add credits
 ```
 
-That's it. ☺️ You can only use it by giving an ``children``.
+Requires Flutter 3.29.2+ and Dart 3.7.2+.
+
+## Use
+
 ```dart
-Credits(
-	onFinished: () => debugPrint("finish"),
-	pauseOnTouch: false,
-	duration: const  Duration(seconds: 12),
-	delay: const  Duration(seconds: 1),
-	children: [
-		Text("Actor 1"),
-		Text("Actor 2"),
-		Text("Actor 3"),
-	],
-),
+import 'package:credits/credits.dart';
+import 'package:flutter/material.dart';
+
+Scaffold(
+  body: Credits(
+    duration: const Duration(seconds: 24),
+    delay: const Duration(milliseconds: 400),
+    onFinished: () => debugPrint('That’s a wrap!'),
+    children: const [
+      Text(
+        'Made together.',
+        style: TextStyle(fontSize: 40, color: Colors.white),
+      ),
+      SizedBox(height: 32),
+      FlutterLogo(size: 48),
+      SizedBox(height: 32),
+      Text('Thank you.', style: TextStyle(color: Colors.white)),
+    ],
+  ),
+)
 ```
 
-Parameters are as follows. ☺️
+Press and hold to pause; release to continue. Credits also work inside a bounded
+container such as a `SizedBox`. To replay, rebuild with a new `Key`.
 
- - **children**: You have to give here the widgets that will be included in the scroll action.
+## Customize
 
- - **onFinished**: You can use this function for the operations to be performed when the scrolling process is completed.
- 
- - **pauseOnTouch**: When the screen is pressed, it stops the credits.
- 
- - **duration**: You can set the playing time of the swipe here.
+| Parameter | Default | Description |
+| --- | --- | --- |
+| `children` | Required | Widgets to include in the credits. |
+| `duration` | 10 seconds | Duration of the complete scroll, excluding pauses. |
+| `delay` | 300 milliseconds | Wait before starting. |
+| `pauseOnTouch` | `true` | Pause while the preview is held. |
+| `backgroundColor` | `Colors.black` | Background color; use transparent for a custom backdrop. |
+| `curve` | `Curves.linear` | Scroll animation curve. |
+| `crossAxisAlignment` | `CrossAxisAlignment.center` | Horizontal alignment of the children. |
+| `onFinished` | `null` | Called once when the credits finish. |
 
- - **delay**: You can set the delay time of the scroll here.
+## Try the example
 
- - **backgroundColor**: You can edit the background color here.
+The [example app](example) includes Cinema and Paper styles, duration controls,
+touch-to-pause, replay, and a copyable widget snippet. It adapts to narrow and
+wide screens.
 
- - **curve**: Lets you specify the type of animation curve.
+The example requires Flutter 3.41+ and Dart 3.11+.
 
- - **crossAxisAlignment**: Lets you specify how children are placed along the cross axis in a flexible layout.
+```sh
+cd example
+flutter pub get
+flutter run
+```
+
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
